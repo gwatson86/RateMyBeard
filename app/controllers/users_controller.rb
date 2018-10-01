@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def create
     new_user = User.create(user_params)
-    redirect_to new_user
+    redirect_to login_path
   end
 
   def edit
