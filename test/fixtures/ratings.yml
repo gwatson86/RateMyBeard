@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  beard: one
+  user: one
+  rating: 1
+
+two:
+  beard: two
+  user: two
+  rating: 1
