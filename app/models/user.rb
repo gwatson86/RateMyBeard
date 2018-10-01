@@ -9,4 +9,6 @@ class User < ApplicationRecord
     has_many :beards
     has_many :ratings, through: :beards
 
+    has_secure_password
+
 end

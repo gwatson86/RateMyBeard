@@ -9,6 +9,7 @@
     <p>Instagram: <%= f.text_field 'instagram' %></p>
     <p>Twitter: <%= f.text_field 'twitter' %></p>
     <p>Profile Picture URL: <%= f.text_field 'profile_picture' %></p>
-    <p>Password: <%= f.text_field 'password' %></p>
+    <p>Password: <%= f.password_field :password %></p>
+    <p>Password: <%= f.password_field :password_confirmation %></p>
     <p><%= f.submit %></p>
 <% end %>
