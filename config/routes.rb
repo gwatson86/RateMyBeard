@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
   resources :beards
   resources :ratings, only: [:new, :create, :edit, :update, :destroy]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :comments, only: [:new, :create, :edit, :update, :destroy]
 end

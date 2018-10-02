@@ -1,7 +1,6 @@
 <h1>Show Me Your Beard</h1>
 
 <%= form_with model: @beard do |f| %>
-    <p>User: <%= f.collection_select :user_id, User.all, :id, :user_name%> </p>
     <p>Picture URL: <%= f.text_field :picture_url %></p>
     <p>Beard Type: <%= f.select :beard_type, [['Balbo', 'Balbo'], ['Chin Curtain', 'Chin Curtain'],
                     ['Chinstrap', 'Chinstrap'], ['Friendly Muttonchops', 'Friendly Muttonchops'], 

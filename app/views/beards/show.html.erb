@@ -2,8 +2,6 @@
 <h1>Beard Type: <%= @beard.beard_type %>
 <br>
 
-<%=  %>
-
 <% if @beard.ratings.length > 0 %>
   <h3>LOOK AT THIS BEARD! IT HAS A RATING OF <%= @average_rating %>!</h3>
 <% else %>
@@ -12,10 +10,34 @@
 
 <img src="<%= @beard.picture_url %>" %>
 
-<%= form_for Rating.new do |f| %>
-  <p>Rating <%= f.select :value, (1..10) %></p>
-  <p><%= f.submit "Rate this Beard" %></p>
+<% user_rating = Rating.all.find do |rating| %>
+  <% rating.user_id == session[:user_id] && rating.beard_id == @beard.id %>
 <% end %>
+    
+<% if user_rating %>
+  <%= form_with model: user_rating do |f| %>
+    <p>Change Your Rating <%= f.select :value, (1..10) %></p>
+    <p><%= f.submit "Change Rating" %></p>
+  <% end %>
+<% else %>
+  <%= form_for Rating.new do |f| %>
+    <p>Rating <%= f.select :value, (1..10) %></p>
+    <p><%= f.submit "Rate this Beard" %></p>
+  <% end %>
+<% end %>
+
+<%= form_for Comment.new do |f| %>
+  <p>Add a comment:</p>
+  <%= f.text_area :commentary %>
+  <p><%= f.submit "Post Comment" %>
+<% end %>
+
+<h3>COMMENTS</h3>
+<ol>
+  <% @beard.comments.each do |c| %>
+    <li>"<%= c.commentary %>" ~ <%= link_to c.user.user_name, user_path(c.user.id) %></li>
+  <% end %>
+</ol>
 
 <%= form_tag beard_path(@beard.id), method: "delete" do %>
   <%= submit_tag "Delete #{@beard.user.user_name}'s Beard" %>
