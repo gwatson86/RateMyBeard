@@ -17,8 +17,13 @@
         <h4 id="header_title">Rate My Beard</h4>
       </div>
       <div>
-        <%= link_to 'Login', kenny_login_path %>
-        <%= link_to 'Sign Up', new_user_path %>
+        <% if session[:user_id] %>
+          <%= link_to 'Profile', user_path(session[:user_id])%> | 
+          <%= link_to 'Log Out', logout_path, method: 'post' %>
+        <% else %>
+          <%= link_to 'Login', kenny_login_path %>
+          <%= link_to 'Sign Up', new_user_path %>
+        <% end %>
       </div>
       
     </>

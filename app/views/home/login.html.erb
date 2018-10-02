@@ -7,6 +7,9 @@
 <%= form_with url: kenny_login_path, method: :post do |f|%>
     <%= f.text_field 'user_name' %>
     <%= f.password_field 'password' %>
-    <%= f.submit %>
+    <%= f.submit 'Loggin'%>
+<% end %>
+<% if flash[:errors] %>
+    <p><%= flash[:errors] %></p>
 <% end %>
 
