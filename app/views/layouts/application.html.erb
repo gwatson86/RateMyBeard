@@ -14,9 +14,10 @@
       <div>
       </div>
       <div>
-        <h4 id="header_title">Rate My Beard</h4>
+        <h4><%= link_to 'Rate My Beard', root_path %></h4>
       </div>
       <div>
+        
         <% if session[:user_id] %>
           <%= link_to 'Profile', user_path(session[:user_id])%> | 
           <%= link_to 'Log Out', logout_path, method: 'post' %>
