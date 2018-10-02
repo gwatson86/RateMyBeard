@@ -22,6 +22,8 @@ class BeardsController < ApplicationController
   end
 
   def destroy
+    Beard.find(params[:id]).destroy
+    redirect_to new_beard_path
   end
 
   private

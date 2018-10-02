@@ -1,6 +1,14 @@
-<h1>Beards#new</h1>
-<p>Find me in app/views/beards/new.html.erb</p>
+<h1>Show Me Your Beard</h1>
 
 <%= form_with model: @beard do |f| %>
-    <p></p>
+    <p>User: <%= f.collection_select :user_id, User.all, :id, :user_name%> </p>
+    <p>Picture URL: <%= f.text_field :picture_url %></p>
+    <p>Beard Type: <%= f.select :beard_type, [['Balbo', 'Balbo'], ['Chin Curtain', 'Chin Curtain'],
+                    ['Chinstrap', 'Chinstrap'], ['Friendly Muttonchops', 'Friendly Muttonchops'], 
+                    ['Full Beard', 'Full Beard'], ['Fu Manchu', 'Fu Manchu'], ['Goat Patch', 'Goat Patch'],
+                    ['Goatee', 'Goatee'], ['Goatee and Moustache', 'Goatee and Moustache'],
+                    ['Horseshoe Moustache', 'Horseshoe Moustache'], ['Muttonchops', 'Muttonchops'],
+                    ['Neckbeard', 'Neckbeard'], ['Shenandoah', 'Shenandoah'],['Sidewhiskers', 'Sidewhiskers'],
+                    ['Soul Patch', 'Soul Patch'], ['Stubble', 'Stubble'],['Van Dyke', 'Van Dyke'], ['Zappa', 'Zappa']] %></p>
+    <%= f.submit %>
 <% end %>

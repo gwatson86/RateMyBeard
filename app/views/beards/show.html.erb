@@ -1,6 +1,10 @@
-<h1>Beards#show</h1>
-<p>Find me in app/views/beards/show.html.erb</p>
+<h1>Beard Grower: <%= @beard.user.user_name %></h1>
+<h1>Beard Type: <%= @beard.beard_type %>
+<br>
+<h3>LOOK AT THIS BEARD</h3>
+<img src="<%= @beard.picture_url %>" %>
 
-<%= @beard.user %>
-<%= @beard.picture_url %>
+<%= form_tag beard_path(@beard.id), method: "delete" do %>
+  <%= submit_tag "Delete #{@beard.user.user_name}'s Beard" %>
+<% end %>
 
