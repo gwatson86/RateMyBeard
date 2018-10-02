@@ -10,24 +10,30 @@
   </head>
 
   <body>
-    <div class="header" > 
       <div>
+        <a href="/">
+          <img id="homelink" src="https://cdn.pixabay.com/photo/2017/10/05/21/27/beard-2821057_960_720.png">
+        </a>
+        
       </div>
       <div>
-        <h4><%= link_to 'Rate My Beard', root_path %></h4>
-      </div>
-      <div>
+
+      
         
         <% if session[:user_id] %>
-          <%= link_to 'Profile', user_path(session[:user_id])%> | 
-          <%= link_to 'Log Out', logout_path, method: 'post' %>
+          <div>
+            <%= link_to 'Rate Beards', "/beards/#{Beard.all.sample.id}"  %>
+          </div>
+          <div>
+            <%= link_to 'Profile', user_path(session[:user_id])%> | 
+            <%= link_to 'Log Out', logout_path, method: 'post' %>
+          </div>
         <% else %>
           <%= link_to 'Login', kenny_login_path %>
           <%= link_to 'Sign Up', new_user_path %>
         <% end %>
+
       </div>
-      
-    </>
     <%= yield %>
   </body>
 </html>
