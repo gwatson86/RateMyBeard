@@ -4,6 +4,16 @@ class BeardsController < ApplicationController
 
   def show
     @beard = Beard.find(params[:id])
+    session[:beard_id] = @beard.id
+    
+    rating_sum = 0
+    @beard.ratings.each do |r|
+      rating_sum += r.value
+    end
+    
+    if @beard.ratings.length > 0
+      @average_rating = (rating_sum.to_f / (@beard.ratings.length)).round(1)
+    end
   end
 
   def new
@@ -16,9 +26,13 @@ class BeardsController < ApplicationController
   end
 
   def edit
+    @beard = Beard.find(params[:id])
   end
 
   def update
+    @beard = Beard.find(params[:id])
+    @beard.update(beard_params)
+    redirect_to @beard
   end
 
   def destroy
