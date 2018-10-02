@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :require_login
-  skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :require_login, only: [:new, :create, :show]
 
   def show
     @user = User.find(params[:id])
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def create
     new_user = User.create(user_params)
-    redirect_to login_path
+    redirect_to kenny_login_path
   end
 
   def edit
