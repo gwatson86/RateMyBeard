@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RateMyBeard</title>
+    <title>Rate My Beard</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <div class="header" > 
+      <div>
+      </div>
+      <div>
+        <h4 id="header_title">Rate My Beard</h4>
+      </div>
+      <div>
+        <%= link_to 'Login', kenny_login_path %>
+        <%= link_to 'Sign Up', new_user_path %>
+      </div>
+      
+    </>
     <%= yield %>
   </body>
 </html>

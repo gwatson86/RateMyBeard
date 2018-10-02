@@ -1,5 +1,12 @@
-<%= form_with url: login_path, method: :post do |f|%>
+<div><img src=" https://cdn3.movieweb.com/i/article/TLkCxLDdx0QIDgPBanUwvMVGmUBLoL/798:50/Top-Gun-2-Kenny-Loggins-Danger-Zone.jpg"></div>
+
+<div>
+    <h1>It's a danger zone ahead. Better loggin first.</h1>
+</div>
+
+<%= form_with url: kenny_login_path, method: :post do |f|%>
     <%= f.text_field 'user_name' %>
-    <%= f.text_field 'password' %>
+    <%= f.password_field 'password' %>
     <%= f.submit %>
 <% end %>
+
