@@ -25,3 +25,8 @@
      margin: auto;
      text-align: center
  }
+
+ #homelink {
+     height: 200px;
+     width: auto;
+ }
