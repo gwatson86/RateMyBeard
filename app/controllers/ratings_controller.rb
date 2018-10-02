@@ -4,8 +4,9 @@ class RatingsController < ApplicationController
   end
 
   def create
-    @rating = Rating.create(rating_params)
-    redirect_to beard_path
+    @rating = Rating.create(user_id: session[:user_id], beard_id: session[:beard_id], value: params[:rating][:value])
+    redirect_to beard_path(session[:beard_id])
+    session.delete(:beard_id)
   end
 
   def edit
@@ -14,18 +15,21 @@ class RatingsController < ApplicationController
 
   def update
     @rating = Rating.find(params[:id])
-    @rating.update(rating_params)
-    redirect_to beard_path
+    @rating.update_attribute :value, params[:rating][:value]
   end
 
   def destroy
     Rating.find(params[:id]).destroy
-    redirect_to beard_path
+    redirect_to '/login'
   end
 
   private
 
   def rating_params
-    params.require(:rating).permit(:user_id, :beard_id, :value)
+    params.require(:rating).permit(:value)
+  end
+
+  def set_beard
+    @beard = Beard.find(params[:beard_id])
   end
 end

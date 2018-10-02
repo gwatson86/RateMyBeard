@@ -1,8 +1,21 @@
-<h1>Beard Grower: <%= @beard.user.user_name %></h1>
+<h1>Beard Grower: <%= link_to @beard.user.user_name, user_path(@beard.user.id) %></h1>
 <h1>Beard Type: <%= @beard.beard_type %>
 <br>
-<h3>LOOK AT THIS BEARD</h3>
+
+<%=  %>
+
+<% if @beard.ratings.length > 0 %>
+  <h3>LOOK AT THIS BEARD! IT HAS A RATING OF <%= @average_rating %>!</h3>
+<% else %>
+  <h3>LOOK AT THIS BEARD! NO ONE HAS RATED IT! WILL YOU BE THE FIRST?!</h3>
+<% end %>
+
 <img src="<%= @beard.picture_url %>" %>
+
+<%= form_for Rating.new do |f| %>
+  <p>Rating <%= f.select :value, (1..10) %></p>
+  <p><%= f.submit "Rate this Beard" %></p>
+<% end %>
 
 <%= form_tag beard_path(@beard.id), method: "delete" do %>
   <%= submit_tag "Delete #{@beard.user.user_name}'s Beard" %>
