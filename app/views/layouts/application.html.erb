@@ -19,7 +19,7 @@
       <div>
         
         <% if session[:user_id] %>
-          <%= link_to 'Profile', user_path(session[:user_id])%> | 
+          <%= link_to 'My Profile', user_path(session[:user_id])%> | 
           <%= link_to 'Log Out', logout_path, method: 'post' %>
         <% else %>
           <%= link_to 'Login', kenny_login_path %>
