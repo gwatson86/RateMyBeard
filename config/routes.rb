@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   
   root 'home#index'
-  resources :users, except: [:index]
+
+  resources :users, except: [:index] do 
+    get '/followers' => 'relationships#index_followers'
+    get '/following' => 'relationships#index_following'
+  end
+
   get '/kenny_login' => 'home#login'
   post '/kenny_login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'

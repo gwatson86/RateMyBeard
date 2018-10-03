@@ -16,7 +16,9 @@
         <% end%>
     <% end %>
 </h1>
-<a href="_target">Followers:</a> <%= @user.followers.count %></h4>  | <a href="_target">Following: </a><%= @user.following.count %>
+<a href="<%= user_followers_path(@user.id) %>">Followers:</a> <%= @user.followers.count %></h4>  | <a href="<%= user_following_path(@user.id) %>">Following: </a><%= @user.following.count %>
+
+
 <img src="<%= @user.profile_picture %>">
 <h2>Name: <%= @user.name %></h2>
 <h3>Bio: </h3><br>
