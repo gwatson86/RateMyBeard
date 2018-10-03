@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    session[:followed_id] = params[:id]
   end
 
   def new
