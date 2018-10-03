@@ -22,6 +22,8 @@ class BeardsController < ApplicationController
 
   def create
     new_beard = Beard.create(beard_params)
+    new_beard.user_id = session[:user_id]
+    new_beard.save
     redirect_to new_beard
   end
 
@@ -43,6 +45,6 @@ class BeardsController < ApplicationController
   private
 
   def beard_params
-    params.require(:beard).permit(:user_id, :beard_type, :picture_url)
+    params.require(:beard).permit(:beard_type, :picture_url)
   end
 end

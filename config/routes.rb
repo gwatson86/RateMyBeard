@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post '/unfollow' => 'relationships#unfollow'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :comments, only: [:new, :create, :edit, :update, :destroy]
 end
