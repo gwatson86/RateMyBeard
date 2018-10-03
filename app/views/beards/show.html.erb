@@ -33,13 +33,28 @@
 <% end %>
 
 <h3>COMMENTS</h3>
+
+
 <ol>
   <% @beard.comments.each do |c| %>
-    <li>"<%= c.commentary %>" ~ <%= link_to c.user.user_name, user_path(c.user.id) %></li>
+    <% if c.user.id == session[:user_id] %>
+      <li>"<%= c.commentary %>" ~ <%= link_to c.user.user_name, user_path(c.user.id) %>
+      <%= form_tag comment_path(c.id), method: "edit" do %>
+      <%= submit_tag "Edit Comment" %>
+      <% end %>
+      <%= form_tag comment_path(c.id), method: "destroy" do %>
+      <%= submit_tag "Delete Comment" %>
+      <% end %></li>
+    <% else %>
+      <li>"<%= c.commentary %>" ~ <%= link_to c.user.user_name, user_path(c.user.id) %></li>
+    <% end %>
   <% end %>
 </ol>
 
-<%= form_tag beard_path(@beard.id), method: "delete" do %>
-  <%= submit_tag "Delete #{@beard.user.user_name}'s Beard" %>
+
+<% if session[:user_id] == @beard.user.id %>
+  <%= form_tag beard_path(@beard.id), method: "delete" do %>
+    <%= submit_tag "Delete Your Beard :(" %>
+  <% end %>
 <% end %>
 
