@@ -16,13 +16,22 @@
         <% end%>
     <% end %>
 </h1>
-<a href="<%= user_followers_path(@user.id) %>">Followers:</a> <%= @user.followers.count %></h4>  | <a href="<%= user_following_path(@user.id) %>">Following: </a><%= @user.following.count %>
+<a href="<%= user_followers_path(@user.id) %>">Followers:</a> <%= @user.followers.count %></h4>  | <a href="<%= user_following_path(@user.id) %>">Following: </a><%= @user.following.count %><br />
 
 
 <img src="<%= @user.profile_picture %>">
+
 <h2>Name: <%= @user.name %></h2>
-<h3>Bio: </h3><br>
-<p><%= @user.bio %></p>
+
+<h3>Age: <%= @user.age %></h3>
+
+<h3>Bio:</h3>
+<p><%= @user.bio %></p><br />
+
+<h3>Twitter: <a href="https://www.twitter.com/<%= @user.twitter %>" target="_blank"><%= @user.twitter %></a></h3>
+
+<h3>Instagram: <a href="https://www.instagram.com/<%= @user.instagram %>" target="_blank"><%= @user.instagram %></a></h3>
+
 <h2>My Beards: </h2><br>
 <div>
     <% @user.beards.each do |beard|%>
