@@ -1,0 +1,16 @@
+<h1><%= @user.user_name %>'s followers: </h1>
+
+<table>
+    <% @followers.each do |follower| %>
+        <tr>
+            <td>
+                <%= link_to follower.user_name, user_path(follower.id) %>
+            </td>
+            <td>
+                <a href="<%= user_path(follower.id) %>">
+                    <img src="<%= follower.profile_picture %>" id="thumbnail">
+                </a>
+            </td>
+        </tr>
+    <% end %>
+</table>

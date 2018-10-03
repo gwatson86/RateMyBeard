@@ -1,0 +1,16 @@
+<h1><%= @user.user_name %> is following: </h1>
+
+<table>
+    <% @following.each do |follow| %>
+        <tr>
+            <td>
+                <%= link_to follow.user_name, user_path(follow.id) %>
+            </td>
+            <td>
+                <a href="<%= user_path(follow.id) %>">
+                    <img src="<%= follow.profile_picture %>" id="thumbnail">
+                </a>
+            </td>
+        </tr>
+    <% end %>
+</table>
