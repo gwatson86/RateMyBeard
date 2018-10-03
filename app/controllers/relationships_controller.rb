@@ -14,6 +14,16 @@ class RelationshipsController < ApplicationController
         redirect_to user_path(session[:followed_id])
     end
 
+    def index_following
+        @following = Relationship.where(follower_id: , followed_id: )
+        redirect_to 
+    end
+
+    def index_followers
+        @followers = Relationship.where(follower_id: , followed_id: )
+        redirect_to 
+    end
+
 
 
 end 
