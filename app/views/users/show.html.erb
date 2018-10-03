@@ -5,16 +5,15 @@
 </div>
 <h1>Username: <%= @user.user_name %>
     <% if @user.id != session[:user_id]%>
-        <% if @user.is_following?(session[:followed_id].to_i) %>
-            <%=form_with url: :follow, method: :post do |f|%>
-                <%= f.submit 'Follow' %>
-            <% end%>
-        <% else %>
+        <% if @is_following %>
             <%=form_with url: :unfollow, method: :post do |f|%>
                 <%= f.submit 'Unfollow' %>
             <% end%>
+        <% else %>
+            <%=form_with url: :follow, method: :post do |f|%>
+                <%= f.submit 'Follow' %>
+            <% end%>
         <% end%>
-
     <% end %>
 </h1>
 <a href="_target">Followers:</a> <%= @user.followers.count %></h4>  | <a href="_target">Following: </a><%= @user.following.count %>

@@ -5,7 +5,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @login = User.find(session[:user_id])
     session[:followed_id] = params[:id]
+    @is_following = @login.is_following?(params[:id]) ? true : false
   end
 
   def new
