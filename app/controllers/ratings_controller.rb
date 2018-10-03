@@ -5,7 +5,7 @@ class RatingsController < ApplicationController
 
   def create
     @rating = Rating.create(user_id: session[:user_id], beard_id: session[:beard_id], value: params[:rating][:value])
-    redirect_to beard_path(session[:beard_id])
+    redirect_to beard_path(Beard.all.sample.id)
     session.delete(:beard_id)
   end
 
