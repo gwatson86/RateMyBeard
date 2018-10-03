@@ -39,10 +39,10 @@
   <% @beard.comments.each do |c| %>
     <% if c.user.id == session[:user_id] %>
       <li>"<%= c.commentary %>" ~ <%= link_to c.user.user_name, user_path(c.user.id) %>
-      <%= form_tag comment_path(c.id), method: "edit" do %>
+      <%= form_tag edit_comment_path(c.id), method: "get" do %>
       <%= submit_tag "Edit Comment" %>
       <% end %>
-      <%= form_tag comment_path(c.id), method: "destroy" do %>
+      <%= form_tag comment_path(c.id), method: "delete" do %>
       <%= submit_tag "Delete Comment" %>
       <% end %></li>
     <% else %>
