@@ -16,11 +16,14 @@ class CommentsController < ApplicationController
     def update
       @comment = Comment.find(params[:id])
       @comment.update_attribute :commentary, params[:comment][:commentary]
+      redirect_to beard_path(session[:beard_id])
+      session.delete(:beard_id)
     end
   
     def destroy
-      comment.find(params[:id]).destroy
+      Comment.find(params[:id]).destroy
       redirect_to beard_path(session[:beard_id])
+      session.delete(:beard_id)
     end
   
     private
