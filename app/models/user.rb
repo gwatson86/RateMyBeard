@@ -13,5 +13,9 @@ class User < ApplicationRecord
     has_many :ratings, through: :beards, dependent: :destroy
     has_many :comments, through: :beards, dependent: :destroy
 
+    def is_following?(id)
+        Relationship.where(follower_id: self.id, followed_id: id).empty? ? false : true
+    end
+
 
 end

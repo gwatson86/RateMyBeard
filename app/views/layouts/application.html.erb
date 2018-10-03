@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -17,16 +18,13 @@
         
       </div>
       <div>
-
-      
-        
         <% if session[:user_id] %>
-          <div>
-            <%= link_to 'Rate Beards', "/beards/#{Beard.all.sample.id}"  %>
-          </div>
           <div>
             <%= link_to 'Profile', user_path(session[:user_id])%> | 
             <%= link_to 'Log Out', logout_path, method: 'post' %>
+          </div>
+          <div>
+            <%= link_to 'Rate Beards', "/beards/#{Beard.all.sample.id}"  %>
           </div>
         <% else %>
           <%= link_to 'Login', kenny_login_path %>
