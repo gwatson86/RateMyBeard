@@ -2,3 +2,32 @@
     height: 600px;
     width: auto;
 }
+
+#thumbnail {
+    height: 100px;
+    width: auto;
+}
+
+#bigthumb {
+    height: 200px;
+    width: auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 57% 37%;
+    padding: 4%;
+    grid-column-gap: 5%;
+}
+.grid-item1 {
+  text-align: center;
+}
+
+.grid-item2 {
+    text-align: center;
+}
+
+.inline-button {
+    display: inline-block;
+    margin-bottom: 20px;
+}

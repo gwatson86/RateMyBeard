@@ -1,69 +1,78 @@
-<h1>Beard Grower: <%= link_to @beard.user.user_name, user_path(@beard.user.id) %></h1>
-<h1>Beard Type: <%= @beard.beard_type %>
-<br>
+<div class="grid-container">
+  <div class="grid-item1">
+    <img width="100%" src="<%= @beard.picture_url %>" %>
+  </div>
 
-<% if @beard.ratings.length > 0 %>
-  <h3>LOOK AT THIS BEARD! IT HAS A RATING OF <%= @average_rating %>!</h3>
-<% else %>
-  <h3>LOOK AT THIS BEARD! NO ONE HAS RATED IT! WILL YOU BE THE FIRST?!</h3>
-<% end %>
+  <div class="grid-item2">
+    <h1>Beard Grower: <%= link_to @beard.user.user_name, user_path(@beard.user.id) %></h1>
+    <h1>Beard Type: <%= @beard.beard_type %>
+    <br>
 
-<img src="<%= @beard.picture_url %>" id='resize' %>
-
-<% user_rating = Rating.all.find do |rating| %>
-  <% rating.user_id == session[:user_id] && rating.beard_id == @beard.id %>
-<% end %>
-
-<% if session[:user_id] %>
-  <% if user_rating %>
-    <%= form_with model: user_rating do |f| %>
-      <p>Change Your Rating <%= f.select :value, (1..10) %></p>
-      <p><%= f.submit "Change Rating" %></p>
-    <% end %>
-  <% else %>
-    <%= form_for Rating.new do |f| %>
-      <p>Rating <%= f.select :value, (1..10) %></p>
-      <p><%= f.submit "Rate this Beard" %></p>
-    <% end %>
-  <% end %>
-<% end %>
-
-<% if session[:user_id] %>
-  <%= form_for Comment.new do |f| %>
-    <p>Add a comment:</p>
-    <%= f.text_area :commentary %>
-    <p><%= f.submit "Post Comment" %>
-  <% end %>
-<% end %>
-
-<% if session[:user_id] == nil %>
-  <p>Ratings and comments are disable for non-users. 
-  <%= link_to 'Log in', kenny_login_path %> or 
-  <%= link_to 'sign up', new_user_path %> to begin rating and commenting on beards!</p>
-<% end %>
-
-<h3>COMMENTS</h3>
-
-
-<ol>
-  <% @beard.comments.each do |c| %>
-    <% if c.user.id == session[:user_id] %>
-      <li>"<%= c.commentary %>" ~ <%= link_to c.user.user_name, user_path(c.user.id) %>
-      <%= form_tag edit_comment_path(c.id), method: "get" do %>
-      <%= submit_tag "Edit Comment" %>
-      <% end %>
-      <%= form_tag comment_path(c.id), method: "delete" do %>
-      <%= submit_tag "Delete Comment" %>
-      <% end %></li>
+    <% if @beard.ratings.length > 0 %>
+      <h3>LOOK AT THIS BEARD! IT HAS A RATING OF <%= @average_rating %>!</h3>
     <% else %>
-      <li>"<%= c.commentary %>" ~ <%= link_to c.user.user_name, user_path(c.user.id) %></li>
+      <h3>LOOK AT THIS BEARD! NO ONE HAS RATED IT! WILL YOU BE THE FIRST?!</h3>
     <% end %>
-  <% end %>
-</ol>
 
+    <% user_rating = Rating.all.find do |rating| %>
+      <% rating.user_id == session[:user_id] && rating.beard_id == @beard.id %>
+    <% end %>
 
-<% if session[:user_id] == @beard.user.id %>
-  <%= form_tag beard_path(@beard.id), method: "delete" do %>
-    <%= submit_tag "Delete Your Beard :(" %>
-  <% end %>
-<% end %>
+    <% if session[:user_id] %>
+      <% if user_rating %>
+        <%= form_with model: user_rating do |f| %>
+          <p>Change Your Rating <%= f.select :value, (1..10) %></p>
+          <p><%= f.submit "Change Rating" %></p>
+        <% end %>
+      <% else %>
+        <%= form_for Rating.new do |f| %>
+          <p>Rating <%= f.select :value, (1..10) %></p>
+          <p><%= f.submit "Rate this Beard" %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% if session[:user_id] %>
+      <%= form_for Comment.new do |f| %>
+        <p>Add a comment:</p>
+        <%= f.text_area :commentary %>
+        <p><%= f.submit "Post Comment" %>
+      <% end %>
+    <% end %>
+
+    <% if session[:user_id] == nil %>
+      <p>Ratings and comments are disable for non-users. 
+      <%= link_to 'Log in', kenny_login_path %> or 
+      <%= link_to 'sign up', new_user_path %> to begin rating and commenting on beards!</p>
+    <% end %>
+
+    <h3><u>COMMENTS</u></h3>
+
+    <% @beard.comments.each do |c| %>
+      <% if c.user.id == session[:user_id] %>
+        <p>"<%= c.commentary %>" ~ <%= link_to c.user.user_name, user_path(c.user.id) %>
+        
+        <div>
+          <div class="inline-button" display="inline-block">
+            <%= form_tag edit_comment_path(c.id), method: "get" do %>
+            <%= submit_tag "Edit Comment" %>
+            <% end %>
+          </div>
+          <div class="inline-button" display="inline-block">
+            <%= form_tag comment_path(c.id), method: "delete" do %>
+            <%= submit_tag "Delete Comment" %>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        "<%= c.commentary %>" ~ <%= link_to c.user.user_name, user_path(c.user.id) %></p>
+      <% end %>
+    <% end %>
+
+    <% if session[:user_id] == @beard.user.id %>
+      <%= form_tag beard_path(@beard.id), method: "delete" do %>
+        <%= submit_tag "Delete Your Beard :(" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
