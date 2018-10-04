@@ -5,9 +5,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @login = User.find(session[:user_id])
-    session[:followed_id] = params[:id]
-    @is_following = @login.is_following?(params[:id]) ? true : false
+
+    if session[:user_id]
+      @login = User.find(session[:user_id])
+      session[:followed_id] = params[:id]
+      @is_following = @login.is_following?(params[:id]) ? true : false
+    end
   end
 
   def new
@@ -15,8 +18,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    new_user = User.create(user_params)
-    redirect_to kenny_login_path
+    new_user = User.new(user_params)
+
+    if new_user.valid?
+      new_user.save
+      redirect_to kenny_login_path
+    else
+      flash[:errors] = new_user.errors.full_messages
+      redirect_to new_user_path
+    end
   end
 
   def edit
@@ -24,8 +34,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    update_user = User.update(user_params)
-    redirect_to update_user
+    update_user = User.find(params[:id])
+
+    if update_user.update(user_params)
+      redirect_to update_user
+    else
+      flash[:errors] = update_user.errors.full_messages
+      redirect_to edit_user_path
+    end
   end
 
   def destroy

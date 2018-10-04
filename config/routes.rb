@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
   resources :ratings, only: [:new, :create, :edit, :update, :destroy]
   resources :comments, only: [:new, :create, :edit, :update, :destroy]
+  resources :beards, except: [:index, :edit, :update]
   post '/follow' => 'relationships#follow'
   post '/unfollow' => 'relationships#unfollow'
   

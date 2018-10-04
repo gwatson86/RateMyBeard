@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  beard_type: MyString
+  picture_url: MyString
   user: one
-  type: 
 
 two:
+  beard_type: MyString
+  picture_url: MyString
   user: two
-  type: 

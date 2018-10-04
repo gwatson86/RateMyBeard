@@ -1,5 +1,4 @@
 class BeardsController < ApplicationController
- 
   def show
     @beard = Beard.find(params[:id])
     session[:beard_id] = @beard.id

@@ -13,6 +13,16 @@ class User < ApplicationRecord
     has_many :ratings, through: :beards, dependent: :destroy
     has_many :comments, through: :beards, dependent: :destroy
 
+
+    validates :user_name, length: {minimum: 2}
+    validates :user_name, uniqueness: true
+    validates :name, length: {minimum: 2}
+    validates :age, numericality: {greater_than: 0}
+    validates :profile_picture, presence: true
+    validates :profile_picture, :format => URI::regexp(%w(http https))
+    validates :password, length: {minimum: 5}
+
+
     def is_following?(id)
         follows = Relationship.where(follower_id: self.id,followed_id: id)
         do_i_follow = follows.length > 0 ? true : false
