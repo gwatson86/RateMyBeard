@@ -53,7 +53,7 @@
 
 
 <% if session[:user_id] == @beard.user.id %>
-  <%= form_tag beard_path(@beard.id), method: "delete" do %>
+  <%= form_tag user_beard_path(@beard.id), method: "delete" do %>
     <%= submit_tag "Delete Your Beard :(" %>
   <% end %>
 <% end %>

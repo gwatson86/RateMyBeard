@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   
     def create
       @comment = Comment.create(user_id: session[:user_id], beard_id: session[:beard_id], commentary: params[:comment][:commentary])
-      redirect_to beard_path(session[:beard_id])
+      redirect_to user_beard_path(session[:user_id], session[:beard_id])
       session.delete(:beard_id)
     end
   
@@ -16,13 +16,13 @@ class CommentsController < ApplicationController
     def update
       @comment = Comment.find(params[:id])
       @comment.update_attribute :commentary, params[:comment][:commentary]
-      redirect_to beard_path(session[:beard_id])
+      redirect_to user_beard_path(session[:beard_id])
       session.delete(:beard_id)
     end
   
     def destroy
       Comment.find(params[:id]).destroy
-      redirect_to beard_path(session[:beard_id])
+      redirect_to user_beard_path(session[:user_id], session[:beard_id])
       session.delete(:beard_id)
     end
   

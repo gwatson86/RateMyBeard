@@ -1,6 +1,6 @@
 <div>
     <% if session[:user_id] == @user.id%>
-        <%= link_to 'Add Beard', new_beard_path %>
+        <%= link_to 'Add Beard', new_user_beard_path(@user.id) %>
     <% end %>
 </div>
 <h1>Username: <%= @user.user_name %>
@@ -35,7 +35,7 @@
 <h2>My Beards: </h2><br>
 <div>
     <% @user.beards.each do |beard|%>
-            <a href="/beards/<%= beard.id  %>">
+            <a href="/users/<%= beard.user_id %>/beards/<%= beard.id  %>">
                 <img src="<%= beard.picture_url %>" id="thumbnail" >
             </a>
     <% end %>

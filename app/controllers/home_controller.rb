@@ -22,6 +22,7 @@ class HomeController < ApplicationController
         end.reverse.to_h
 
         @beards = sorted.keys.slice(0..10)
+        
     end
 
     def login

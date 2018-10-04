@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   resources :users, except: [:index] do 
     get '/followers' => 'relationships#index_followers'
     get '/following' => 'relationships#index_following'
+    resources :beards, except: [:index]
   end
 
   get '/kenny_login' => 'home#login'
   post '/kenny_login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
-  resources :beards
   resources :ratings, only: [:new, :create, :edit, :update, :destroy]
   resources :comments, only: [:new, :create, :edit, :update, :destroy]
   post '/follow' => 'relationships#follow'
