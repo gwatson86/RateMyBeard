@@ -10,28 +10,46 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-      <div>
-        <a href="/">
-          <img id="homelink" src="https://cdn.pixabay.com/photo/2017/10/05/21/27/beard-2821057_960_720.png">
-        </a>
-        
-      </div>
-      <div>
+  <table class="tableWithBackgroung" width="auto" height="350px">
+    
+    
+    <img class="tableBackground" src="https://i.imgur.com/eVbpFMf.jpg">
+
+    <tr>
+      <td colspan="5"></td>
+    </tr>
+
+    <tr>
+      <td colspan="5"></td>
+      <td colspan="5" style="font-size: 4em; font-weight: bold" halign="left" valign="top ">
+        <a href="/">RateMyBeard</a></td>
+    </tr>
+    <tr>
+      <td width="100px" halign="right" valign="center">
         <% if session[:user_id] %>
-          <div>
-            <%= link_to 'My Profile', user_path(session[:user_id])%> | 
-            <%= link_to 'Log Out', logout_path, method: 'post' %>
-          </div>
-          <div>
-            <%= link_to 'Rate Beards', "/beards/#{Beard.all.sample.id}"  %>
-          </div>
+          <a href="/users/<%= session[:user_id] %>">My Profile</a>
         <% else %>
           <%= link_to 'Login', kenny_login_path %>
+        <% end %>
+      </td>
+      <td width="100px" halign="right" valign="center">
+        <% if session[:user_id] %>
+          <%= link_to 'Log Out', logout_path, method: 'post' %>
+        <% else %>
           <%= link_to 'Sign Up', new_user_path %>
         <% end %>
+      </td>
+      <td width="100px" halign="right" valign="center">
+        <% if session[:user_id] %>
+          <%= link_to 'Rate Beards', "/beards/#{Beard.all.sample.id}" %>
+        <% end %>
+      </td>
+    </tr>
 
-      </div>
+    
+  </table>
+
+  <body bgcolor=grey>
     <%= yield %>
   </body>
 </html>

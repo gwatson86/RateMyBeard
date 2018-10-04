@@ -1,6 +1,4 @@
 class BeardsController < ApplicationController
-  def index
-  end
 
   def show
     @beard = Beard.find(params[:id])
@@ -39,7 +37,7 @@ class BeardsController < ApplicationController
 
   def destroy
     Beard.find(params[:id]).destroy
-    redirect_to new_beard_path
+    redirect_to user_path(session[:user_id])
   end
 
   private

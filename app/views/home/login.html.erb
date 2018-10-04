@@ -1,15 +1,15 @@
-<div><img src=" https://cdn3.movieweb.com/i/article/TLkCxLDdx0QIDgPBanUwvMVGmUBLoL/798:50/Top-Gun-2-Kenny-Loggins-Danger-Zone.jpg"></div>
-
 <div>
     <h1>It's a danger zone ahead. Better loggin first.</h1>
 </div>
 
 <%= form_with url: kenny_login_path, method: :post do |f|%>
-    <%= f.text_field 'user_name' %>
-    <%= f.password_field 'password' %>
+    <p>Username: <%= f.text_field 'user_name' %></p>
+    <p>Password: <%= f.password_field 'password' %></p>
     <%= f.submit 'Loggin'%>
 <% end %>
 <% if flash[:errors] %>
     <p><%= flash[:errors] %></p>
 <% end %>
+
+<body background="http://www.thexboxhub.com/wp-content/uploads/2016/11/kenny-loggins.jpg"></body>
 

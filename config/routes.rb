@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   get '/kenny_login' => 'home#login'
   post '/kenny_login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
-  resources :beards
   resources :ratings, only: [:new, :create, :edit, :update, :destroy]
   resources :comments, only: [:new, :create, :edit, :update, :destroy]
+  resources :beards, except: [:index, :edit, :update]
   post '/follow' => 'relationships#follow'
   post '/unfollow' => 'relationships#unfollow'
   

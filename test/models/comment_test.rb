@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should not save comment with invalid attributes" do
+    comment = Comment.new
+    assert_not comment.save, "Did not save the comment without attributes"
+  end
 end

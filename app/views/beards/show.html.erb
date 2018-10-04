@@ -8,28 +8,38 @@
   <h3>LOOK AT THIS BEARD! NO ONE HAS RATED IT! WILL YOU BE THE FIRST?!</h3>
 <% end %>
 
-<img src="<%= @beard.picture_url %>" %>
+<img src="<%= @beard.picture_url %>" id='resize' %>
 
 <% user_rating = Rating.all.find do |rating| %>
   <% rating.user_id == session[:user_id] && rating.beard_id == @beard.id %>
 <% end %>
-    
-<% if user_rating %>
-  <%= form_with model: user_rating do |f| %>
-    <p>Change Your Rating <%= f.select :value, (1..10) %></p>
-    <p><%= f.submit "Change Rating" %></p>
-  <% end %>
-<% else %>
-  <%= form_for Rating.new do |f| %>
-    <p>Rating <%= f.select :value, (1..10) %></p>
-    <p><%= f.submit "Rate this Beard" %></p>
+
+<% if session[:user_id] %>
+  <% if user_rating %>
+    <%= form_with model: user_rating do |f| %>
+      <p>Change Your Rating <%= f.select :value, (1..10) %></p>
+      <p><%= f.submit "Change Rating" %></p>
+    <% end %>
+  <% else %>
+    <%= form_for Rating.new do |f| %>
+      <p>Rating <%= f.select :value, (1..10) %></p>
+      <p><%= f.submit "Rate this Beard" %></p>
+    <% end %>
   <% end %>
 <% end %>
 
-<%= form_for Comment.new do |f| %>
-  <p>Add a comment:</p>
-  <%= f.text_area :commentary %>
-  <p><%= f.submit "Post Comment" %>
+<% if session[:user_id] %>
+  <%= form_for Comment.new do |f| %>
+    <p>Add a comment:</p>
+    <%= f.text_area :commentary %>
+    <p><%= f.submit "Post Comment" %>
+  <% end %>
+<% end %>
+
+<% if session[:user_id] == nil %>
+  <p>Ratings and comments are disable for non-users. 
+  <%= link_to 'Log in', kenny_login_path %> or 
+  <%= link_to 'sign up', new_user_path %> to begin rating and commenting on beards!</p>
 <% end %>
 
 <h3>COMMENTS</h3>
@@ -57,4 +67,3 @@
     <%= submit_tag "Delete Your Beard :(" %>
   <% end %>
 <% end %>
-

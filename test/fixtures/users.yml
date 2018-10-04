@@ -8,6 +8,7 @@ one:
   instagram: MyString
   twitter: MyString
   profile_picture: MyString
+  password_digest: MyString
 
 two:
   user_name: MyString
@@ -17,3 +18,4 @@ two:
   instagram: MyString
   twitter: MyString
   profile_picture: MyString
+  password_digest: MyString

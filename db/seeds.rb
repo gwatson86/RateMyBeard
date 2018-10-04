@@ -110,6 +110,17 @@ User.create(
     password: "password123"
 )
 
+User.create(
+    user_name: "senor_cheng",
+    name: "Michael Cheng",
+    age: 31,
+    bio: "Through the power of positive thinking, I grew this totally real beard!",
+    instagram: "senor_cheng",
+    twitter: "senor_cheng",
+    profile_picture: "https://i.imgur.com/DDEnlLs.png",
+    password: "password123"
+)
+
 Beard.create(user_id: 1, beard_type: "Full Beard", picture_url: "https://scontent.fhou1-2.fna.fbcdn.net/v/t1.0-9/15977222_10103186108789333_8197452651751024576_n.jpg?_nc_cat=105&oh=ac94ebf30349b49844f43133571600ee&oe=5C253578")
 Beard.create(user_id: 1, beard_type: "Horseshoe Moustache", picture_url: "https://scontent.fhou1-2.fna.fbcdn.net/v/t31.0-8/172943_839463132083_2315379_o.jpg?_nc_cat=105&oh=a01478e40327f2027bfbcf411941fcff&oe=5C5926AF")
 Beard.create(user_id: 1, beard_type: "Stubble", picture_url: "https://scontent.fhou1-2.fna.fbcdn.net/v/t1.0-9/1929140_5246825467_6842_n.jpg?_nc_cat=107&oh=bdd363901df1e2eeda5ca32619717d33&oe=5C21488F")
@@ -138,6 +149,8 @@ Beard.create(user_id: 8, beard_type: "Full Beard", picture_url: "http://www.frea
 Beard.create(user_id: 9, beard_type: "Full Beard", picture_url: "https://slack-imgs.com/?c=1&url=https%3A%2F%2Fwww.rover.com%2Fblog%2Fwp-content%2Fuploads%2F2014%2F07%2Fserious-schnauzer-512x540.jpg")
 
 Beard.create(user_id: 10, beard_type: "Full Beard", picture_url: "https://i.imgur.com/1zVat09.jpg")
+
+Beard.create(user_id: 11, beard_type: "Full Beard", picture_url: "https://i.imgur.com/DDEnlLs.png")
 
 Rating.create(user_id: 1, beard_id: 1, value: 10)
 Rating.create(user_id: 2, beard_id: 1, value: 9)
