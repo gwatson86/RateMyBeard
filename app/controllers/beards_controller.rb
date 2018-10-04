@@ -18,21 +18,25 @@ class BeardsController < ApplicationController
   end
 
   def create
-    new_beard = Beard.create(beard_params)
+    new_beard = Beard.new(beard_params)
     new_beard.user_id = session[:user_id]
-    new_beard.save
-    redirect_to user_beard_path(new_beard.user_id, new_beard.id)
+    if new_beard.save
+      redirect_to new_beard
+    else
+      flash[:errors] = new_beard.errors.full_messages
+      redirect_to new_beard_path
+    end
   end
 
-  def edit
-    @beard = Beard.find(params[:id])
-  end
+  # def edit
+  #   @beard = Beard.find(params[:id])
+  # end
 
-  def update
-    @beard = Beard.find(params[:id])
-    @beard.update(beard_params)
-    redirect_to @beard
-  end
+  # def update
+  #   @beard = Beard.find(params[:id])
+  #   @beard.update(beard_params)
+  #   redirect_to @beard
+  # end
 
   def destroy
     Beard.find(params[:id]).destroy

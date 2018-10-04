@@ -10,7 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <table class="tableWithBackgroung" width="auto" height="350px">
+  <table class="tableWithBackground" width="auto" height="350px">
     
     
     <img class="tableBackground" src="https://i.imgur.com/eVbpFMf.jpg">
@@ -21,25 +21,25 @@
 
     <tr>
       <td colspan="5"></td>
-      <td colspan="5" style="font-size: 4em; font-weight: bold" halign="left" valign="top ">
+      <td colspan="5" style="font-size: 4em; font-weight: bold; position: absolute; top: 75px;">
         <a href="/">RateMyBeard</a></td>
     </tr>
     <tr>
-      <td width="100px" halign="right" valign="center">
+      <td width="100px" height="20px" halign="right" valign="center">
         <% if session[:user_id] %>
           <a href="/users/<%= session[:user_id] %>">My Profile</a>
         <% else %>
           <%= link_to 'Login', kenny_login_path %>
         <% end %>
       </td>
-      <td width="100px" halign="right" valign="center">
+      <td width="100px" height="20px" halign="right" valign="center">
         <% if session[:user_id] %>
           <%= link_to 'Log Out', logout_path, method: 'post' %>
         <% else %>
           <%= link_to 'Sign Up', new_user_path %>
         <% end %>
       </td>
-      <td width="100px" halign="right" valign="center">
+      <td width="100px" height="20px" halign="right" valign="center">
         <% if session[:user_id] %>
           <%= link_to 'Rate Beards', "/beards/#{Beard.all.sample.id}" %>
         <% end %>

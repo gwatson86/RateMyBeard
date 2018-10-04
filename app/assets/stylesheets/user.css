@@ -7,3 +7,17 @@
     height: 200px;
     width: auto;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 57% 37%;
+    padding: 4%;
+    grid-column-gap: 5%;
+}
+.grid-item1 {
+  text-align: center;
+}
+
+.grid-item2 {
+    text-align: center;
+}

@@ -1,49 +1,49 @@
-<div>
-    <% if session[:user_id] == @user.id%>
-        <%= link_to 'Add Beard', new_beard_path %>
-        <%= link_to 'Edit Profile', edit_user_path %>
-    <% end %>
-</div>
+<div class="grid-container">
 
-<h1>Username: <%= @user.user_name %></h1>
+    <div class="grid-item1">
+        <img width="100%" src="<%= @user.profile_picture %>">
+    </div>
 
-<% if session[:user_id] %>
-    <% if @user.id != session[:user_id]%>
-        <% if @is_following %>
-            <%=form_with url: :unfollow, method: :post do |f|%>
-                <%= f.submit 'Unfollow' %>
+    <div class="grid-item2">
+        <% if session[:user_id] == @user.id%>
+            <%= link_to 'Add Beard', new_beard_path %>
+            |
+            <%= link_to 'Edit Profile', edit_user_path %>
+        <% end %>
+
+    <h1>Username: <%= @user.user_name %></h1>
+
+    <% if session[:user_id] %>
+        <% if @user.id != session[:user_id]%>
+            <% if @is_following %>
+                <%=form_with url: :unfollow, method: :post do |f|%>
+                    <%= f.submit 'Unfollow' %>
+                <% end%>
+            <% else %>
+                <%=form_with url: :follow, method: :post do |f|%>
+                    <%= f.submit 'Follow' %>
+                <% end%>
             <% end%>
-        <% else %>
-            <%=form_with url: :follow, method: :post do |f|%>
-                <%= f.submit 'Follow' %>
-            <% end%>
-        <% end%>
+        <% end %>
     <% end %>
-<% end %>
-<a href="<%= user_followers_path(@user.id) %>">Followers:</a> <%= @user.followers.count %></h4>  | <a href="<%= user_following_path(@user.id) %>">Following: </a><%= @user.following.count %><br />
+    <a href="<%= user_followers_path(@user.id) %>">Followers:</a> <%= @user.followers.count %></h4>  | <a href="<%= user_following_path(@user.id) %>">Following: </a><%= @user.following.count %><br />
 
+    <h2>Name: <%= @user.name %></h2>
 
-<img src="<%= @user.profile_picture %>">
+    <h3>Age: <%= @user.age %></h3>
 
-<h2>Name: <%= @user.name %></h2>
+    <h3>Bio:</h3>
+    <p><%= @user.bio %></p><br />
 
-<h3>Age: <%= @user.age %></h3>
+    <h3>Twitter: <a href="https://www.twitter.com/<%= @user.twitter %>" target="_blank"><%= @user.twitter %></a></h3>
 
-<h3>Bio:</h3>
-<p><%= @user.bio %></p><br />
+    <h3>Instagram: <a href="https://www.instagram.com/<%= @user.instagram %>" target="_blank"><%= @user.instagram %></a></h3>
 
-<h3>Twitter: <a href="https://www.twitter.com/<%= @user.twitter %>" target="_blank"><%= @user.twitter %></a></h3>
-
-<h3>Instagram: <a href="https://www.instagram.com/<%= @user.instagram %>" target="_blank"><%= @user.instagram %></a></h3>
-
-<h2>My Beards: </h2><br>
-<div>
-    <% @user.beards.each do |beard|%>
-            <a href="/users/<%= beard.user_id %>/beards/<%= beard.id  %>">
-                <img src="<%= beard.picture_url %>" id="thumbnail" >
-            </a>
-    <% end %>
+    <h2>My Beards: </h2><br>
+        <% @user.beards.each do |beard|%>
+                <a href="/beards/<%= beard.id  %>">
+                    <img src="<%= beard.picture_url %>" id="thumbnail" >
+                </a>
+        <% end %>
+    </div>
 </div>
-
-
-

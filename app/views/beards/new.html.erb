@@ -1,6 +1,12 @@
 <h1>Show Me Your Beard</h1>
 
-<%= form_with model: @beard, url: user_beards_path do |f| %>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |message| %>
+    <p><font color='crimson'><%= message %></font></p>
+  <% end %>
+<% end %>
+
+<%= form_with model: @beard do |f| %>
     <p>Picture URL: <%= f.text_field :picture_url %></p>
     <p>Beard Type: <%= f.select :beard_type, [['Balbo', 'Balbo'], ['Chin Curtain', 'Chin Curtain'],
                     ['Chinstrap', 'Chinstrap'], ['Friendly Muttonchops', 'Friendly Muttonchops'], 
