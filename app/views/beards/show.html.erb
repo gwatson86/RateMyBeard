@@ -4,6 +4,9 @@
   </div>
 
   <div class="grid-item2">
+
+    <p><font color='crimson'><%= flash[:carrots] %></font></p>
+
     <h1>Beard Grower: <%= link_to @beard.user.user_name, user_path(@beard.user.id) %></h1>
     <h1>Beard Type: <%= @beard.beard_type %>
     <br>

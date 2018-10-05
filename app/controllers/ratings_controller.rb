@@ -5,7 +5,13 @@ class RatingsController < ApplicationController
 
   def create
     @rating = Rating.create(user_id: session[:user_id], beard_id: session[:beard_id], value: params[:rating][:value])
-    redirect_to beard_path(Beard.all.sample.id)
+    
+    if RandomBeard.new(session[:user_id]).beard
+      redirect_to beard_path(RandomBeard.new(session[:user_id]).beard.id)
+    else
+      flash[:carrots] = "You've already rated all the beards!"
+      redirect_to beard_path(Beard.all.sample.id)
+    end
     session.delete(:beard_id)
   end
 

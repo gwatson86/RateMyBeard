@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Rate My Beard</title>
     <%= csrf_meta_tags %>
@@ -43,8 +44,11 @@
         <% end %>
       </td>
       <td width="100px" height="20px" halign="right" valign="center">
-        <% if session[:user_id] %>
-          <%= link_to 'Rate Beards', "/beards/#{Beard.all.sample.id}" %>
+        <% if session[:user_id] && RandomBeard.new(session[:user_id]).beard != nil%>
+          <%= link_to 'Rate Beards', "/beards/#{RandomBeard.new(session[:user_id]).beard.id}" %>
+        <% elsif session[:user_id] %>
+          <% flash[:carrots] = "You've already rated all the beards!" %>
+          <%= link_to 'Rate Beards', "/beards/#{Beard.all.sample.id}"%>
         <% end %>
       </td>
     </tr>
