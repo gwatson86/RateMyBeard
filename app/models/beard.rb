@@ -9,7 +9,6 @@ class Beard < ApplicationRecord
   def self.top_beards(type = nil)
     beard_ranks = {}
         beards = (type == nil) ? Beard.all : Beard.where(beard_type: type)
-        binding.pry
         beards.each do |beard|
             beard_ranks[beard]
             rating_sum = 0
