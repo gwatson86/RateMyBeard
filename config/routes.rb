@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :beards, except: [:index, :edit, :update]
   post '/follow' => 'relationships#follow'
   post '/unfollow' => 'relationships#unfollow'
+  get '/sort_by_beard' => 'home#index'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :comments, only: [:new, :create, :edit, :update, :destroy]

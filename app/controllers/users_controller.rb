@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       session[:followed_id] = params[:id]
       @is_following = @login.is_following?(params[:id]) ? true : false
     end
+
   end
 
   def new

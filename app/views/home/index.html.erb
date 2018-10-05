@@ -1,3 +1,22 @@
-<h1>Top Beards: <% @beards.each do |beard|  %></h1>
+
+<h2>Feed: </h2>
+<% if @followed_beards.length > 0%>
+    <% @followed_beards.each do |beard|%>
+        <p><%= beard.user.user_name %> @ <%= beard.created_at %></p>
+        <a href="/beards/<%= beard.id %>"><img src="<%= beard.picture_url %>" id="bigthumb"></a>
+    <% end %>
+<% end %>
+<h2>Top Beards: </h2>
+<%= form_with url: sort_by_beard_path, method: :get, local: true do |f|%>
+    <%= f.select :beard_type, [['Balbo', 'Balbo'], ['Chin Curtain', 'Chin Curtain'],
+                    ['Chinstrap', 'Chinstrap'], ['Friendly Muttonchops', 'Friendly Muttonchops'], 
+                    ['Full Beard', 'Full Beard'], ['Fu Manchu', 'Fu Manchu'], ['Goat Patch', 'Goat Patch'],
+                    ['Goatee', 'Goatee'], ['Goatee and Moustache', 'Goatee and Moustache'],
+                    ['Horseshoe Moustache', 'Horseshoe Moustache'], ['Muttonchops', 'Muttonchops'],
+                    ['Neckbeard', 'Neckbeard'], ['Shenandoah', 'Shenandoah'],['Sidewhiskers', 'Sidewhiskers'],
+                    ['Soul Patch', 'Soul Patch'], ['Stubble', 'Stubble'],['Van Dyke', 'Van Dyke'], ['Zappa', 'Zappa']] %>
+    <%= f.submit 'Go Home' %>
+<% end %>
+<% @beards.each do |beard|%>
     <a href="/beards/<%= beard.id %>"><img src="<%= beard.picture_url %>" id="bigthumb"></a>
 <% end %>

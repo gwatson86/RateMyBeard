@@ -28,5 +28,21 @@ class User < ApplicationRecord
         do_i_follow = follows.length > 0 ? true : false
     end
 
+    def follow_beards
+        beards = {}
+        self.following.each do |follow|
+            follow.beards.each do |beard|
+                beards[beard] = beard.created_at
+            end
+        end
+
+        sorted_beards = beards.sort_by do |key, value| 
+            value
+        end.reverse.to_h
+
+        sorted_beards.keys.slice(0..4)
+
+    end
+
 
 end

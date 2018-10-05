@@ -1,28 +1,18 @@
 class HomeController < ApplicationController
 
     def index
-        beard_ranks = {}
-        beards = Beard.all
-        beards.each do |beard|
-            beard_ranks[beard]
-            rating_sum = 0
-            average_rating = 0
-            beard.ratings.each do |r|
-                rating_sum += r.value
-            end
-
-            if beard.ratings.length > 0
-                average_rating = (rating_sum.to_f / (beard.ratings.length)).round(1)
-            end
-            beard_ranks[beard] = average_rating
+        @followed_beards = []
+        if session[:user_id]
+            user = User.find(session[:user_id])
+            @followed_beards = user.follow_beards.last(5)
         end
 
-        sorted = beard_ranks.sort_by do |key, value| 
-            value
-        end.reverse.to_h
+        if params.has_key?(:beard_type)
+            @beards = Beard.top_beards(params[:beard_type])
+        else
+            @beards = Beard.top_beards
+        end
 
-        @beards = sorted.keys.slice(0..10)
-        
     end
 
     def login
